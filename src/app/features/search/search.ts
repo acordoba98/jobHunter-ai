@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { JobsService } from '../../core/services/jobs.service';
-import { Platform } from '../../core/models/job.model';
+import { Job, Platform } from '../../core/models/job.model';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { JobCard } from './job-card/job-card';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatFormFieldModule,
     MatButtonModule,
     FormsModule,
+    JobCard,
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
@@ -54,5 +56,9 @@ export class Search implements OnInit {
   onSearch() {
     this.setQuery(this.searchQuery);
     this.search();
+  }
+
+  onJobSelected(job: Job) {
+    console.log('Oferta seleccionada:', job);
   }
 }

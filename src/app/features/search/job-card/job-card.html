@@ -1,1 +1,23 @@
-<p>job-card works!</p>
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ job().title }}</mat-card-title>
+    <mat-card-subtitle>{{ job().company }} - {{ job().location }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ job().salary }}
+    </p>
+    <p>
+      {{ job().platform }}
+    </p>
+    <p>{{ job().match }}% de compatibilidad</p>
+    <mat-chip-set aria-label="Tags">
+      @for (tag of job().tags; track tag) {
+        <mat-chip>{{ tag }}</mat-chip>
+      }
+    </mat-chip-set>
+  </mat-card-content>
+  <mat-card-actions>
+    <button matButton (click)="jobSelected.emit(job())">Seleccionar oferta</button>
+  </mat-card-actions>
+</mat-card>
