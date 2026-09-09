@@ -23,10 +23,7 @@
     <mat-spinner></mat-spinner>
   } @else if (hasResults()) {
     @for (job of filteredJobs(); track job.id) {
-      <div>
-        <label>{{ job.title }}</label>
-        <label>{{ job.company }}</label>
-      </div>
+      <app-job-card [job]="job" (jobSelected)="onJobSelected($event)" />
     }
   } @else {
     <div>
