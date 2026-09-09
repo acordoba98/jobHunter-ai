@@ -1,1 +1,36 @@
-<p>search works!</p>
+<div class="search-bar">
+  <mat-form-field appearance="fill">
+    <mat-label>Búsqueda</mat-label>
+    <input matInput [(ngModel)]="searchQuery" placeholder="Busca empleos" />
+  </mat-form-field>
+  <button matButton="filled" (click)="onSearch()">Buscar</button>
+</div>
+
+<div class="platforms">
+  @for (platform of platforms; track platform.id) {
+    <button
+      matButton="elevated"
+      (click)="togglePlatform(platform.id)"
+      [class.active]="selectedPlatforms().includes(platform.id)"
+    >
+      {{ platform.name }}
+    </button>
+  }
+</div>
+
+<div class="results">
+  @if (loading()) {
+    <mat-spinner></mat-spinner>
+  } @else if (hasResults()) {
+    @for (job of filteredJobs(); track job.id) {
+      <div>
+        <label>{{ job.title }}</label>
+        <label>{{ job.company }}</label>
+      </div>
+    }
+  } @else {
+    <div>
+      <label>No hay resultados</label>
+    </div>
+  }
+</div>
